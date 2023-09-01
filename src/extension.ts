@@ -37,17 +37,22 @@ class SensitiveFile {
   private readonly regex: RegExp;
 
   constructor(fileExtensions: string[]) {
-    this.fileExtensions = new Set(fileExtensions);
+    this.fileExtensions = new Set(
+      fileExtensions.map((ext) => ext.toLowerCase())
+    );
     this.regex = new RegExp(`\\.(${fileExtensions.join("|")})$`, "i");
   }
 
-  public isSensitiveFile(document: vscode.TextDocument): boolean {
-    return this.fileExtensions.has(this.getFileExtension(document.fileName));
+  public isSensitive(document: vscode.TextDocument): boolean {
+    const extension = this.getFileExtension(document.fileName);
+    return this.fileExtensions.has(extension);
   }
 
   private getFileExtension(fileName: string): string {
     const lastDotIndex = fileName.lastIndexOf(".");
-    return lastDotIndex === -1 ? "" : fileName.slice(lastDotIndex + 1);
+    return lastDotIndex === -1
+      ? ""
+      : fileName.slice(lastDotIndex + 1).toLowerCase();
   }
 }
 
@@ -77,7 +82,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   vscode.workspace.onDidOpenTextDocument((document) => {
-    if (sensitiveFile.isSensitiveFile(document) && streamerMode.getEnabled()) {
+    if (sensitiveFile.isSensitive(document) && streamerMode.getEnabled()) {
       if (!shouldKeepEditorOpen) {
         vscode.window
           .showWarningMessage(
