@@ -16,10 +16,6 @@
       {
         "command": "vscode-streamer-mode.toggle",
         "title": "Toggle Streamer Mode"
-      },
-      {
-        "command": "vscode-streamer-mode.disable",
-        "title": "Disable Streamer Mode"
       }
     ]
   },

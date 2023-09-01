@@ -43,20 +43,6 @@ export function activate(context: vscode.ExtensionContext) {
       );
     })
   );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand("vscode-streamer-mode.disable", () => {
-      isStreamerModeEnabled = false;
-      vscode.workspace
-        .getConfiguration()
-        .update(
-          "vscode-streamer-mode.enabled",
-          isStreamerModeEnabled,
-          vscode.ConfigurationTarget.Global
-        );
-      vscode.window.showInformationMessage("Streamer mode is now disabled.");
-    })
-  );
 }
 
 function isEnvFile(document: vscode.TextDocument): boolean {
