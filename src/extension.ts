@@ -75,9 +75,22 @@ export function activate(context: vscode.ExtensionContext) {
     "pfx",
   ]);
 
+  // Create a status bar item
+  const statusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    100
+  );
+  statusBarItem.text = "Streamer Mode: Disabled";
+  statusBarItem.command = "vscode-streamer-mode.toggle";
+  statusBarItem.show();
+
   context.subscriptions.push(
     vscode.commands.registerCommand("vscode-streamer-mode.toggle", () => {
       streamerMode.toggle();
+      // Update the status bar item text
+      statusBarItem.text = `Streamer Mode: ${
+        streamerMode.getEnabled() ? "Enabled" : "Disabled"
+      }`;
     })
   );
 
