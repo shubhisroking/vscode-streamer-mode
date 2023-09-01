@@ -26,3 +26,4 @@ node_modules
 # End of https://www.toptal.com/developers/gitignore/api/yarn
 
 yarn.lock
+package-lock.json

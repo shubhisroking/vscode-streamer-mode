@@ -1,9 +1,14 @@
 {
   "name": "vscode-streamer-mode",
-  "displayName": "vscode-streamer-mode",
-  "description": "A simple streamer mode for vscode",
-  "version": "0.0.1",
+  "displayName": "Vscode Streamer Mode",
+  "description": "A simple streamer mode for vscode.",
+  "version": "0.1.0",
   "publisher": "shubhisroking",
+  "icon": "static/icon.png",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/shubhisroking/vscode-streamer-mode"
+	},
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -21,14 +26,14 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run esbuild-base --minify",
+    "vscode:prepublish": "npm run esbuild-base --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "yarn run esbuild-base -- --sourcemap",
-    "esbuild-watch": "yarn run esbuild-base -- --sourcemap --watch",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile && yarn run lint",
+    "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
@@ -45,5 +50,5 @@
     "mocha": "^10.2.0",
     "typescript": "^5.1.6"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "npm@9.8.1"
 }
