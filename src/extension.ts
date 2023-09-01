@@ -1,31 +1,8 @@
 import * as vscode from "vscode";
 
+let isStreamerModeEnabled = false;
+
 export function activate(context: vscode.ExtensionContext) {
-  let isStreamerModeEnabled = vscode.workspace
-    .getConfiguration("vscode-streamer-mode")
-    .get<boolean>("enabled");
-
-  vscode.workspace.onDidOpenTextDocument((document) => {
-    if (isStreamerModeEnabled && isEnvFile(document)) {
-      vscode.commands
-        .executeCommand("workbench.action.closeActiveEditor")
-        .then(() => {
-          vscode.window
-            .showWarningMessage(
-              "Opening .env files is not allowed while streamer mode is enabled.",
-              "Open Anyway"
-            )
-            .then((choice) => {
-              if (choice === "Open Anyway") {
-                vscode.workspace.openTextDocument(document.uri).then((doc) => {
-                  vscode.window.showTextDocument(doc);
-                });
-              }
-            });
-        });
-    }
-  });
-
   context.subscriptions.push(
     vscode.commands.registerCommand("vscode-streamer-mode.toggle", () => {
       isStreamerModeEnabled = !isStreamerModeEnabled;
@@ -43,6 +20,25 @@ export function activate(context: vscode.ExtensionContext) {
       );
     })
   );
+
+  vscode.workspace.onDidOpenTextDocument((document) => {
+    if (isEnvFile(document) && isStreamerModeEnabled) {
+      vscode.window
+        .showWarningMessage(
+          "Opening .env files is not allowed in streamer mode.",
+          "Open Anyway"
+        )
+        .then((selectedOption) => {
+          if (selectedOption === "Open Anyway") {
+            vscode.commands.executeCommand(
+              "vscode.open",
+              vscode.Uri.file(document.fileName)
+            );
+          }
+        });
+      vscode.commands.executeCommand("workbench.action.closeActiveEditor");
+    }
+  });
 }
 
 function isEnvFile(document: vscode.TextDocument): boolean {
