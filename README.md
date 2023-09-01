@@ -1,7 +1,7 @@
 # VSCode Streamer Mode
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/shubhisroking.vscode-streamer-mode?color=blue&label=Version&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=shubhisroking.vscode-streamer-mode)
-[![Install](https://img.shields.io/badge/Install-VSCode%20Streamer%20Mode-blue)](vscode:extension/shubhisroking.vscode-streamer-mode)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/shubhisroking.vscode-streamer-mode?color=007ACC&label=Version&logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=shubhisroking.vscode-streamer-mode)
+[![Install](https://img.shields.io/badge/Install-VSCode%20Streamer%20Mode-007ACC?logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=shubhisroking.vscode-streamer-mode)
 
 This extension adds a "Streamer Mode" feature to Visual Studio Code that helps prevent accidental sharing of sensitive information while streaming or recording your screen.
 
