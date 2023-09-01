@@ -3,6 +3,7 @@
   "displayName": "vscode-streamer-mode",
   "description": "A simple streamer mode for vscode",
   "version": "0.0.1",
+  "publisher": "shubhisroking",
   "engines": {
     "vscode": "^1.81.0"
   },
