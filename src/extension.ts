@@ -42,5 +42,11 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function isEnvFile(document: vscode.TextDocument): boolean {
-  return document.fileName.endsWith(".env");
+  return (
+    document.fileName.match(/\.env$/i) !== null ||
+    document.fileName.match(/\.env\.local$/i) !== null ||
+    document.fileName.match(/\.env\.(development|staging|production)$/i) !==
+      null ||
+    document.fileName.match(/\.env\.test$/i) !== null
+  );
 }
