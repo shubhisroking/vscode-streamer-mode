@@ -1,6 +1,6 @@
 {
   "name": "vscode-streamer-mode",
-  "displayName": "Vscode Streamer Mode",
+  "displayName": "VSCode Streamer Mode",
   "description": "A simple streamer mode for vscode.",
   "version": "0.1.0",
   "publisher": "shubhisroking",
