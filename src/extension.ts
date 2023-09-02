@@ -95,7 +95,8 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window
           .showWarningMessage(
             "Opening sensitive files is not allowed in streamer mode.",
-            "Open Anyway"
+            "Open Anyway",
+            "Close" // Added "Close" option
           )
           .then((selectedOption) => {
             if (selectedOption === "Open Anyway") {
@@ -104,6 +105,9 @@ export function activate(context: vscode.ExtensionContext) {
                 "vscode.open",
                 vscode.Uri.file(document.fileName)
               );
+            } else if (selectedOption === "Close") {
+              // Handle "Close" option
+              vscode.commands.executeCommand("workbench.action.closeMessage");
             }
           });
         vscode.commands.executeCommand("workbench.action.closeActiveEditor");
