@@ -12,24 +12,12 @@ class StreamerMode {
     this.statusBarItem.command = "vscode-streamer-mode.toggle";
     this.updateStatusBarItem();
     this.statusBarItem.show();
-    vscode.workspace
-      .getConfiguration()
-      .update(
-        "vscode-streamer-mode.enabled",
-        this.isEnabled,
-        vscode.ConfigurationTarget.Global
-      );
+    this.updateGlobalConfig();
   }
 
   public toggle() {
     this.isEnabled = !this.isEnabled;
-    vscode.workspace
-      .getConfiguration()
-      .update(
-        "vscode-streamer-mode.enabled",
-        this.isEnabled,
-        vscode.ConfigurationTarget.Global
-      );
+    this.updateGlobalConfig();
     this.updateStatusBarItem();
     vscode.window.showInformationMessage(
       `Streamer mode is now ${this.isEnabled ? "enabled" : "disabled"}.`
@@ -44,6 +32,16 @@ class StreamerMode {
     this.statusBarItem.text = `Streamer Mode: ${
       this.isEnabled ? "Enabled" : "Disabled"
     }`;
+  }
+
+  private updateGlobalConfig() {
+    vscode.workspace
+      .getConfiguration()
+      .update(
+        "vscode-streamer-mode.enabled",
+        this.isEnabled,
+        vscode.ConfigurationTarget.Global
+      );
   }
 }
 
@@ -113,7 +111,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  // Reset the flag when the active editor changes
   vscode.window.onDidChangeActiveTextEditor(() => {
     shouldKeepEditorOpen = false;
   });
