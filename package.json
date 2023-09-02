@@ -2,7 +2,7 @@
   "name": "vscode-streamer-mode",
   "displayName": "VSCode Streamer Mode",
   "description": "A simple streamer mode for vscode.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "shubhisroking",
   "icon": "static/icon.png",
   "repository": {
